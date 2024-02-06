@@ -1,4 +1,4 @@
-# FORRIA64'S MULTITHREAD OPTIMIZED PHYXLS GENERATION TOOL V16.5
+# FORRIA64'S ARTWORK DIGITAL PROCESSING TOOL V16.5
 
 import os
 import json
@@ -175,7 +175,7 @@ def prompt_continue():
 ▓▓▓▓▓▓▓▓████████████████▓▓          ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓┗┛▓▓┗━━┛▓
 ▓▓▓▓▓▓▓▓████████████████░░        ▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 
-FORRIA64'S MULTITHREAD OPTIMIZED PHYXLS GENERATION TOOL V16.5
+FORRIA64'S ARTWORK DIGITAL PROCESSING TOOL V16.5
 """)
     while True:
         print("<<< PRESS CTRL + C TO QUIT >>> <<< PRESS ENTER TO GO FISHING >>>", end="", flush=True)
