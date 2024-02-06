@@ -1,0 +1,23 @@
+{
+    "intervals": [
+        {
+            "start": 1,
+            "end": 2,
+            "background_colors": ["#000000"],
+            "element_colors": ["#FCC000", "#FF7000", "#FF0000"],
+            "shadow_path": "assets/shadow.png",
+            "texture_path": "assets/texture.png",
+            "outline_path": "assets/outline.png"
+        },
+        {
+            "start": 3,
+            "end": 4,
+            "background_colors": ["#000000"],
+            "element_colors": ["#FCC000", "#FF7000", "#FF0000"],
+            "shadow_path": "assets/shadow.png",
+            "texture_path": "assets/texture.png",
+            "outline_path": "assets/outline.png"
+        }
+    ]
+}
+
