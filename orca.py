@@ -11,7 +11,7 @@ def resize_and_save_24kb(image_path):
     try:
         with Image.open(image_path) as img:
             # Resize image to fit within 24kb
-            img.thumbnail((400, 400))
+            img.thumbnail((200, 200))
             img.save(f"24k_artworks/{os.path.basename(image_path)}", optimize=True)
             debug_message(f"TAMED SMOL PHYXL POD AT 24k_artworks/{os.path.basename(image_path)}")
     except Exception as e:
