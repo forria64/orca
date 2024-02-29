@@ -9,4 +9,3 @@ cd orca
 pip install -r requirements.txt
 python orca.py
 ```
-
