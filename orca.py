@@ -1,4 +1,4 @@
-# ORCA V1.0
+# ORCA v1.0
 
 import os
 import json
@@ -175,7 +175,7 @@ def prompt_continue():
 ▓▓▓▓▓▓▓▓████████████████▓▓          ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓┗┛▓▓┗━━┛▓
 ▓▓▓▓▓▓▓▓████████████████░░        ▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 
-ORCA V1.0
+ORCA v1.0
 """)
     while True:
         print("<<< PRESS CTRL + C TO QUIT >>> <<< PRESS ENTER TO GO FISHING >>>", end="", flush=True)
