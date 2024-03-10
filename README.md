@@ -1,5 +1,5 @@
 # orca
-Artwork digital processing tool built for the Phyxls NFT project. Learn more about the project at phyxls.com.
+Artwork digital processing tool built for the Phyxls NFT project.
 
 ### Installation
 
