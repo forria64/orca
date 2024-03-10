@@ -8,7 +8,7 @@
 ▓▓▓▓▓▓▓▓████████████████████~~~~~~~~▓▓
 ▓▓▓▓▓▓▓▓████████████████▓▓~~~~~~~~~~▓▓
 ▓▓▓▓▓▓▓▓████████████████░░~~~~~~~~▒▒▓▓
-#FORRIA64'S ARTWORK DIGITAL PROCESSING TOOL V16.5
+# FORRIA64'S ARTWORK DIGITAL PROCESSING TOOL V16.5
 Artwork digital processing tool built for the Phyxls NFT project.
 
 ### Installation
