@@ -11,7 +11,7 @@
 ▓▓▓▓▓▓▓▓████████████████░░        ▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 ```
 # ORCA v1.0
-Artwork digital processing tool built for the Phyxls NFT project.
+Digital processing tool built for the Phyxls art project.
 
 ### Installation
 
