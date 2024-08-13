@@ -1,5 +1,3 @@
-# ORCA v1.0
-
 import os
 import json
 import random
@@ -28,7 +26,7 @@ def generate_background(background_colors, serial_number):
     background.save(tmp_path)
     debug_message(f"YOUR NET HAS BEEN LOWERED INTO THE DEPTHS: {tmp_path}")
 
-    return tmp_path
+    return tmp_path, background_color
 
 
 def color_element(args):
@@ -43,7 +41,7 @@ def color_element(args):
     colored_element.save(tmp_path)
     debug_message(f"YOU'VE CAUGHT A WILD SEA PHYXL IN ONE OF YOUR NETS! NET NO. #{serial_number}")
 
-    return tmp_path
+    return tmp_path, element_color
 
 
 def color_element_inner(layer_path, overlay_color, saturation_factor, sharpness_factor):
@@ -72,7 +70,7 @@ def color_element_inner(layer_path, overlay_color, saturation_factor, sharpness_
 def generate_artwork(interval, serial_number):
 
     # Generate Background
-    background_path = generate_background(interval["background_colors"], serial_number)
+    background_path, background_color = generate_background(interval["background_colors"], serial_number)
     background = Image.open(background_path).convert("RGBA")
 
     # Overlay Shadow
@@ -82,11 +80,11 @@ def generate_artwork(interval, serial_number):
 
     # Parallel Element Coloring using multiprocessing
     with multiprocessing.Pool() as pool:
-        element_paths = pool.map(color_element, [(interval, x, y, serial_number) for x in range(1, 9) for y in range(1, 9)])
+        element_data = pool.map(color_element, [(interval, x, y, serial_number) for x in range(1, 9) for y in range(1, 9)])
 
     # Overlay Elements
     debug_message(f"WRANGLING CAUGHT PHYXLS... NET NO. #{serial_number}")
-    for element_path in element_paths:
+    for element_path, _ in element_data:
         element = Image.open(element_path).convert("RGBA")
         background = Image.alpha_composite(background, element)
 
@@ -108,14 +106,14 @@ def generate_artwork(interval, serial_number):
     # Resize and save 24kb version
     resize_and_save_24kb(generated_path)
     
-    # Generate Metadata (this is broken)
+    # Generate Metadata
     metadata = {
-        "image_name": f"Phyxls {serial_number}",
+        "image_name": f"Phyxls #{serial_number}",
         "attributes": [
-            {"category": "Background", "value": interval["background_colors"][0]},
+            {"category": "Background", "value": background_color},
         ] + [
-            {"category": f"Phyxl ({x},{y})", "value": interval["element_colors"][random.randint(0, len(interval["element_colors"]) - 1)]}
-            for x in range(1, 9) for y in range(1, 9)
+            {"category": f"Phyxl ({x},{y})", "value": color}
+            for (element_path, color), (x, y) in zip(element_data, [(x, y) for x in range(1, 9) for y in range(1, 9)])
         ]
     }
 
@@ -163,7 +161,6 @@ def generate_artworks_for_interval(interval):
 def prompt_continue():
     
     print("""
-
 ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓┏━━━┓┏━━━┓┏━━━┓┏━━━┓▓▓▓▓▓▓▓▓▓▓▓
 ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓┃┏━┓┃┃┏━┓┃┃┏━┓┃┃┏━┓┃▓▓▓▓▓▓▓▓▓▓▓
@@ -174,8 +171,10 @@ def prompt_continue():
 ▓▓▓▓▓▓▓▓████████████████████        ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓┃┃▓▓┏━┛┃▓
 ▓▓▓▓▓▓▓▓████████████████▓▓          ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓┗┛▓▓┗━━┛▓
 ▓▓▓▓▓▓▓▓████████████████░░        ▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
-
-ORCA v1.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ORCA v2.0
+Digital processing tool built for the Phyxls art project.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 """)
     while True:
         print("<<< PRESS CTRL + C TO QUIT >>> <<< PRESS ENTER TO GO FISHING >>>", end="", flush=True)
@@ -238,9 +237,10 @@ def main():
     for interval in configs["intervals"]:
         generate_artworks_for_interval(interval)
     
-    print("YOUR PHYXLS COLLECTION HAS BEEN SUCCESFULLY GENERATED!")
+    print("YOUR PHYXLS COLLECTION HAS BEEN SUCCESSFULLY GENERATED!")
     print("CHECK OUT YOUR CATCH IN THE >>> generated_artworks <<< AND >>> 24k_artworks <<< DIRECTORIES!")
     print("METADATA FOR ALL GENERATED ARTWORKS CAN BE FOUND IN THE >>> metadata <<< DIRECTORY!")
 
 if __name__ == "__main__":
     main()
+
