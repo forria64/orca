@@ -20,7 +20,7 @@ def generate_background(background_colors, serial_number):
     debug_message(f"PREPARING YOUR NET... NET NO. #{serial_number}")
 
     background_color = random.choice(background_colors)
-    background = Image.new("RGB", (9000, 9000), background_color)
+    background = Image.new("RGB", (8500, 8500), background_color)
 
     tmp_path = f"tmp_files/background_{serial_number}.png"
     background.save(tmp_path)
