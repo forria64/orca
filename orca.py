@@ -108,9 +108,9 @@ def generate_artwork(interval, serial_number):
     # Resize and save 24kb version
     resize_and_save_24kb(generated_path)
     
-    # Generate Metadata
+    # Generate Metadata (this is broken)
     metadata = {
-        "image_name": f"Phyxls #{serial_number}",
+        "image_name": f"Phyxls {serial_number}",
         "attributes": [
             {"category": "Background", "value": interval["background_colors"][0]},
         ] + [
